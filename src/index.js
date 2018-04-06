@@ -21,7 +21,7 @@ const server = express();
 
 server.use(
   cors({
-    origin: 'https://sbaidon.github.io/client-abrax/'
+    origin: 'https://sbaidon.github.io'
   })
 );
 
