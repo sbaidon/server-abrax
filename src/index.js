@@ -19,7 +19,11 @@ mongoose.connection.on('error', err => {
 const PORT = 9090;
 const server = express();
 
-server.use(cors());
+server.use(
+  cors({
+    origin: 'https://sbaidon.github.io/client-abrax/'
+  })
+);
 
 server.use(bodyParser.json());
 
