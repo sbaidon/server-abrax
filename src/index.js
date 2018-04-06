@@ -1,35 +1,36 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
+import './models/Todo';
 import dotenv from 'dotenv';
 import cors from 'cors';
+import routes from './routes';
 
 dotenv.config();
 
-/*
-mongoose.connect(process.env.DATABASE, {
-  useMongoClient: true
-});
+mongoose.connect(process.env.DATABASE);
 
 mongoose.Promise = global.Promise;
 
 mongoose.connection.on('error', err => {
   console.error(`There was an error: ${err.message}`);
 });
-*/
 
-const PORT = 3000;
+const PORT = 9090;
 const server = express();
 
 server.use(
   cors({
-    origin: 'http://localhost:8080',
-    credentials: true // <-- REQUIRED backend setting
+    origin: 'http://localhost:3000'
   })
 );
 
 server.use(bodyParser.json());
 
-server.listen(PORT, () => {
-  console.log(`Server running on ${PORT}`);
+server.use('/api/v1', routes);
+
+server.set('port', process.env.PORT || PORT);
+
+const app = server.listen(server.get('port'), () => {
+  console.log(`Server running on ${app.address().port}`);
 });
