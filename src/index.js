@@ -21,7 +21,7 @@ const server = express();
 
 server.use(
   cors({
-    origin: 'http://localhost:3000'
+    origin: '*'
   })
 );
 
