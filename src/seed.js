@@ -23,9 +23,9 @@ async function seed(amount) {
   await Promise.all(
     [...Array(amount)]
       .map(() => {
-        const percentageCompleted = getRandomInt(80, 100) / 100;
+        const percentageRemaining = getRandomInt(0, 20) / 100;
         const time = getRandomInt(1800, 7200);
-        const remainingTime = Math.trunc(time * percentageCompleted);
+        const remainingTime = Math.trunc(time * percentageRemaining);
         return {
           name: `${faker.hacker.verb()} the ${faker.hacker.noun()}`,
           description: faker.hacker.phrase(),
