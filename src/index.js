@@ -19,11 +19,7 @@ mongoose.connection.on('error', err => {
 const PORT = 9090;
 const server = express();
 
-server.use(
-  cors({
-    origin: '*'
-  })
-);
+server.use(cors());
 
 server.use(bodyParser.json());
 
